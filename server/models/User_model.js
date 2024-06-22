@@ -44,6 +44,9 @@ try {
     next(error);
 }
 })
+
+
+
 // compare password 
 userSchema.methods.comparePassword=async function(password){
 try {

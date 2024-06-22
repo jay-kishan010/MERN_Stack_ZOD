@@ -1,6 +1,6 @@
 const User = require("../models/User_model");
 const bcrypt=require("bcryptjs")
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     console.log(req.body);
     const { username, email, password, phone } = req.body;
@@ -13,7 +13,8 @@ const register = async (req, res) => {
 
     res.status(201).json({ msg: user , token: await user.generateToken(), userID:user._id.toString(), });
   } catch (error) {
-    res.status(500).json("internal server error");
+    // res.status(500).json("internal server error");
+    next(error);
   }
 };
 const login = async (req, res, next) => {
